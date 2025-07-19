@@ -3,6 +3,7 @@
   "displayName": "flutter 生成文件代码",
   "description": "flutter 生成 GetX 模块文件代码",
   "version": "0.0.1",
+  "publisher": "Sinking",
   "engines": {
     "vscode": "^1.102.0"
   },
