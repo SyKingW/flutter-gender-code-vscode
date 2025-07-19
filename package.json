@@ -1,7 +1,7 @@
 {
   "name": "flutter-gender-code-xq",
-  "displayName": "flutter_gender_code_xq",
-  "description": "",
+  "displayName": "flutter 生成文件代码",
+  "description": "flutter 生成 GetX 模块文件代码",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.102.0"
