@@ -115,8 +115,6 @@ class ${moduleName}Binding implements Bindings {
 
 function generateControllerFileContent(moduleName: string): string {
     return `
-import 'dart:developer';
-
 import 'package:get/get.dart';
 
 import 'index.dart';
@@ -132,17 +130,18 @@ class ${moduleName}Controller extends GetxController {
       state.model.value.title = "关列表";
     }
     // 更新列表视图
-    update();
+    state.model.refresh();
   }
 
   void removeItem() {
+    if (state.items.isEmpty) {
+      return;
+    }
     state.items.removeLast();
-    update();
   }
 
   void addItem() {
     state.items.add(${moduleName}ItemModel("${moduleName}标题", "新内容"));
-    update();
   }
 
   void selectItem(int index) {
@@ -158,7 +157,6 @@ class ${moduleName}Controller extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    log("onInit");
   }
 
   /// 在 onInit() 之后调用 1 帧。这是进入的理想场所
@@ -171,7 +169,6 @@ class ${moduleName}Controller extends GetxController {
   @override
   void onClose() {
     super.onClose();
-    log("onClose");
   }
 }
 	`;
@@ -180,7 +177,6 @@ class ${moduleName}Controller extends GetxController {
 function generateIndexFileContent(moduleName: string): string {
 	const snakeCaseName = toSnakeCaseName(moduleName);
     return `
-library ${snakeCaseName};
 
 export './state.dart';
 export './controller.dart';
@@ -218,7 +214,7 @@ import 'index.dart';
 import 'widgets/widgets.dart';
 
 class ${moduleName}Page extends GetView<${moduleName}Controller> {
-  const ${moduleName}Page({Key? key}) : super(key: key);
+  const ${moduleName}Page({super.key});
 
   // 主视图
   Widget _buildView() {
@@ -262,9 +258,8 @@ class ${moduleName}Page extends GetView<${moduleName}Controller> {
 
 function generateWidgetsFileContent(moduleName: string): string {
     return `
-library widgets;
-
 export './hello.dart';
+
 	`;
 }
 
@@ -276,7 +271,7 @@ import 'package:get/get.dart';
 import '../index.dart';
 
 class HelloWidget extends GetView<${moduleName}Controller> {
-  const HelloWidget({Key? key}) : super(key: key);
+  const HelloWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
