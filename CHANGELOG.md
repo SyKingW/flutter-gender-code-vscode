@@ -4,6 +4,10 @@ All notable changes to the "flutter-gender-code-xq" extension will be documented
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [Unreleased]
+## [0.0.1]
 
-- Initial release
+- 初始版本
+
+## [0.0.2]
+
+- 修复了一些会导致警告的代码生成
